@@ -12,6 +12,7 @@ import requests;
 import provision;
 
 import constants;
+import utils;
 
 struct ProvisioningData {
     Device device;
@@ -23,7 +24,7 @@ bool downloadAndInstallDeps(string configurationPath, bool delegate(float progre
 
     log.info("Downloading APK...");
     Request request = Request();
-    request.sslSetVerifyPeer(false);
+    request.sslSetCaCert(utils.getSystemCaBundlePath());
     request.useStreaming = true;
 
     auto response = request.get(nativesUrl);

@@ -37,6 +37,7 @@ import server.applicationinformation;
 import server.applesrpsession;
 import utils;
 
+
 enum AppleLoginErrorCode {
     mismatchedSRP = 1,
     misformattedEncryptedToken = 2,
@@ -118,7 +119,7 @@ package class AppleAccount {
             auto time = Clock.currTime();
 
             Request request = Request();
-            request.sslSetVerifyPeer(false); // FIXME: SSL pin
+            request.sslSetCaCert(utils.getSystemCaBundlePath());
 
             request.addHeaders(cast(string[string]) [
                 "X-Apple-I-MD": Base64.encode(otp.oneTimePassword),
@@ -469,7 +470,7 @@ package class AppleAccount {
         auto otp = adi.requestOTP(-2);
         auto time = Clock.currTime();
 
-        rq.sslSetVerifyPeer(false); // FIXME: SSL pin
+        rq.sslSetCaCert(utils.getSystemCaBundlePath());
         rq.addHeaders(cast(string[string]) [
             "Content-Type": "text/x-xml-plist",
             "Accept": "text/x-xml-plist",

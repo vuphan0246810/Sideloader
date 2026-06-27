@@ -19,6 +19,7 @@ runs:
             switches = [
                 "-defaultlib=phobos2-ldc,druntime-ldc",
                 "-gcc=aarch64-linux-gnu-gcc",
+                "-static",
             ];
             post-switches = [
                 "-I$HOME/ldc2-$LDC_VERSION-linux-aarch64/import",
@@ -30,3 +31,4 @@ runs:
         EOF
         curl -LO https://github.com/ldc-developers/ldc/releases/download/v$LDC_VERSION/ldc2-$LDC_VERSION-linux-aarch64.tar.xz
         tar -xf ./ldc2-$LDC_VERSION-linux-aarch64.tar.xz -C $HOME
+        sudo apt-get install -y libz-dev-arm64-cross || true

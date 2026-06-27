@@ -35,7 +35,9 @@ jobs:
           submodules: recursive
 
       - name: Update APT repos
-        run: sudo apt-get update
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y zlib1g-dev
 
       - name: Set-up D compiler
         uses: ./.github/actions/setup-d-compiler

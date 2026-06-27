@@ -9,6 +9,7 @@
     "stringImportPaths": ["resources/"],
 
     "buildRequirements": ["allowWarnings", "requireBoundsCheck"],
+    "libs": ["z"],
 
     "dependencies": {
         "botan": "~>1.13",

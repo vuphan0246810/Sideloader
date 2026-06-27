@@ -124,3 +124,17 @@ auto maybeParallel(R)(R range, bool isMultithreaded) {
 
     return RangeApplier(range);
 }
+
+
+public string getSystemCaBundlePath() {
+    version (Android) {
+        // Termux on Android
+        return "/data/data/com.termux/files/usr/etc/tls/cert.pem";
+    } else version (linux) {
+        // Generic Linux path
+        return "/etc/ssl/certs/ca-certificates.crt";
+    } else {
+        // Fallback or other OS
+        return null; // Or throw an exception
+    }
+}
